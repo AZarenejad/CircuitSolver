@@ -1,0 +1,108 @@
+#container {
+    position: absolute;
+    width: 1212px;
+    height: 1054px;
+    border: solid 1px;
+    border-color: black;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#canvas {
+    width: 1050px;
+    height: 948px;
+    position: relative;
+    background-color: #e1e1e1;
+    border: solid 1px;
+    border-color: black;
+}
+
+#sidebar {
+    position: relative;
+    width: 155px;
+    height: 1050px;
+    float: right;
+    background-color: white;
+    border: solid 1px;
+    border-color: black;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#inputs {
+    float: left;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#node-nums {
+    width: 1050px;
+    height: 100px;
+    border: solid 1px black
+}
+
+#node-form {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.text-field {
+    margin-top: 20px;
+    width: 110px;
+}
+
+.sidebar-element {
+    width: 150px;
+    height: 150px;
+}
+
+.sidebar-element:hover {
+    background-color: #c5dcff;
+    width: 150px;
+    height: 150px;
+}
+
+.canvas-element {
+    position: absolute;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.opamp-in-canvas {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.canvas-img {
+    width: 100px;
+    height: 90px;
+}
+
+.inner-el {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.opamp-sidebar {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}

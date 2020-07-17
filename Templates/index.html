@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>مدار الکتریکی</title>
+    <link rel="stylesheet" href={{ url_for( 'static', filename='style.css' ) }} />
+    <link rel="stylesheet" href={{ url_for( 'static', filename='button.css' ) }} />
+    <link rel="shortcut icon" href={{ url_for( 'static', filename='img/icon.png' ) }} />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+
+<body onload="renderSidebar()">
+    <div id="container">
+
+        <div id="inputs">
+            <canvas id="canvas" onclick="createEl(event)">
+				Your browser does not support the HTML5 canvas tag.</canvas>
+
+            <div id="node-nums">
+                <form id="node-form" method="POST" action={{ url_for( 'calculate') }}>
+                    <button type="submit" id="calc-btn btn">Calculate</button>
+                </form>
+            </div>
+        </div>
+        <div id="sidebar"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src={{ url_for( 'static', filename='script.js' ) }}></script>
+    <script src={{ url_for( 'static', filename='button.js' ) }}></script>
+
+    <script>
+        var c = document.getElementById("canvas");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(40, 25, 2, 0, Math.PI * 2, true);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(140, 25, 2, 0, Math.PI * 2, true);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(240, 25, 2, 0, Math.PI * 2, true);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(40, 75, 2, 0, Math.PI * 2, true);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(140, 75, 2, 0, Math.PI * 2, true);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(240, 75, 2, 0, Math.PI * 2, true);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(40, 125, 2, 0, Math.PI * 2, true);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(140, 125, 2, 0, Math.PI * 2, true);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(240, 125, 2, 0, Math.PI * 2, true);
+        ctx.fill();
+    </script>
+
+</body>
+
+</html>
