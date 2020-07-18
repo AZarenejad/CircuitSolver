@@ -1,60 +1,53 @@
 from flask import Flask, render_template, url_for, request, jsonify
+from circuitSolver import *
 import logging
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(message)s')
 
 app = Flask(__name__, template_folder='Templates', static_folder='static',  static_url_path='/static')
 
+verbose = False
 flask_debug = False
+mycircuit = [circuit()]
 
-# global_circuit = [Circuit()]
 
 @app.route('/sim', methods = ['GET'])
 def page():
-    # global global_circuit
-    # del global_circuit[0]
-    # global_circuit.append(Circuit())
+    global mycircuit
+    del mycircuit[0]
+    mycircuit.append(circuit())
     return render_template('index.html')
 
 
 @app.route('/calculate', methods = ['POST'])
 def calculate():
-    pass
-    # global global_circuit
-    # calculated = global_circuit[0].calc()
-    # result = getAnswers(global_circuit[0])
-    # answer = {}
-    # answer['Nodes Voltage'] = result[0]
-    # answer['Circuit Independent Voltage Sources'] = result[1]
-    # answer['Circuit OpAmps'] = result[2]
-    # answer['Circuit Resistors'] = result[3]
-    # answer['Circuit Capacitors'] = result[4]
-    # answer['Circuit Inductors'] = result[5]
-    # from MNA.ShowResults import printResults
-    # printResults(global_circuit[0])
-    # return jsonify(answer)
-
-@app.route('/addelement/<name>', methods = ['POST'])
-def addelement(name):
-    pass
-    # global global_circuit
-    # data = request.get_json()
-    # logging.debug(f'data: {data}')
-    # add_element_to_circuit(circuit_list=global_circuit, **data)
-    # printAddedElements(global_circuit[0])
-    # return 'Success'
+    global mycircuit
+    results = mycircuit[0].solve_circuit()
+    for res in results:
+        print(res, " = " , results[res])
+    return 'Success'
+  
 
 
 @app.route('/state/<string:statement>', methods = ['POST'])
 def handle_statement(statement):
-    pass
-    # print(f'statement before change: {statement}')
-    # statement = statement.replace('#', ' ')
-    # print(f'statement: {statement}')
-    # ans = UIans(circuit=global_circuit, statement=statement)
-    # if ans is not None:
-    #     ans.replace('\n', '<br />')
-    #     return ans
+    global mycircuit
+    inp = statement.split(' ')
+    if inp[0] == "IV":
+        mycircuit[0].add_element(kind = "Voltage Independent Source", left_pos = inp[1] , right_pos = inp[3], value = inp[4])
+    elif inp[0] == "DV":
+        mycircuit[0].add_element(kind = "Voltage Dependent Source", left_pos = inp[1] , right_pos = inp[3], value = inp[4])
+    elif inp[0] == "IC":
+        mycircuit[0].add_element(kind = "Current Independent Source", left_pos = inp[1] , right_pos = inp[3], value = inp[4])
+    elif inp[0] == "DC":
+        mycircuit[0].add_element(kind = "Current Dependent Source", left_pos = inp[1] , right_pos = inp[3], value = inp[4])
+    elif inp[0] == "C":
+        mycircuit[0].add_element(kind = "Capacitor", left_pos = inp[1] , right_pos = inp[3], value = inp[4])
+    elif inp[0] == "R":
+        mycircuit[0].add_element(kind = "Resistor", left_pos = inp[1] , right_pos = inp[3], value = inp[4])
+    elif inp[0] == "L":
+        mycircuit[0].add_element(kind = "Inductor", left_pos = inp[1] , right_pos = inp[3], value = inp[4])
+    return 'Success'
 
 
 
@@ -68,4 +61,4 @@ def reset():
 
 
 if __name__ == '__main__':
-    app.run(port=6666, debug=flask_debug)
+    app.run(port=3030, debug=flask_debug)

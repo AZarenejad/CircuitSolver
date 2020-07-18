@@ -44,8 +44,8 @@ class circuit():
         self.particular = None
         self.name = {}
         self.symbol = {}
-        if verbose:
-            print('Starting a new circuit')
+        # if verbose:
+        #     print('Starting a new circuit')
         self.elements = []
         self.results = []
 
@@ -67,11 +67,11 @@ class circuit():
 
         if value != None:
             self.subsDic[sy] = value
-        if verbose:
-            if value:
-                print('Resistor',name,'added between nodes',node1,'and',node2,'with value',value)
-            else:
-                print('Resistor',name,'added between nodes',node1,'and',node2)
+        # if verbose:
+        #     if value:
+        #         print('Resistor',name,'added between nodes',node1,'and',node2,'with value',value)
+        #     else:
+        #         print('Resistor',name,'added between nodes',node1,'and',node2)
         return sy
 
     def addC(self,name,node1,node2,value=None):
@@ -1094,18 +1094,18 @@ class circuit():
 
 
 # example of how to use:
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    verbose = False
+    # verbose = False
 
-    mycircuit = circuit()
-    mycircuit.add_element(kind = "Voltage Independent Source", left_pos = "1", right_pos = "2", value = 10)
-    mycircuit.add_element(kind = "Resistor", left_pos = "1", right_pos = "4", value = 5)
-    mycircuit.add_element(kind = "Wire", left_pos = "2", right_pos = "5")
-    mycircuit.add_element(kind = "Wire", left_pos = "4", right_pos = "5")
-    mycircuit.add_element(kind = "Wire", left_pos = "5", right_pos = "6")
+    # mycircuit = circuit()
+    # mycircuit.add_element(kind = "Voltage Independent Source", left_pos = "1", right_pos = "2", value = 10)
+    # mycircuit.add_element(kind = "Resistor", left_pos = "1", right_pos = "4", value = 5)
+    # mycircuit.add_element(kind = "Wire", left_pos = "2", right_pos = "5")
+    # mycircuit.add_element(kind = "Wire", left_pos = "4", right_pos = "5")
+    # mycircuit.add_element(kind = "Wire", left_pos = "5", right_pos = "6")
 
-    results = mycircuit.solve_circuit()
+    # results = mycircuit.solve_circuit()
 
-    for res in results:
-        print(res, " = " , results[res])
+    # for res in results:
+    #     print(res, " = " , results[res])
