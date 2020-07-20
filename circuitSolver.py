@@ -1031,8 +1031,7 @@ class circuit():
         d.draw()
 
     def add_element(self, kind, left_pos, right_pos, value = 0,
-            dleft_pos = None, dright_pos = None, dvalue = None,
-            dtype = None, a = None, b = None):
+            dleft_pos = None, dright_pos = None, dtype = None, a = None, b = None):
         position = left_pos + right_pos
         if (kind == 'Voltage Dependent Source' or kind == 'Current Dependent Source'):
             position2 = dleft_pos + dright_pos

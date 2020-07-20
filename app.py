@@ -68,4 +68,4 @@ def reset():
 
 
 if __name__ == '__main__':
-    app.run(port=3567, debug=flask_debug)
+    app.run(port=3810, debug=flask_debug)

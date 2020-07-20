@@ -22,10 +22,14 @@ function createEl(event) {
     let canvas = document.getElementById("canvas");
     let left_pos = Number(prompt("شماره نقطه سمت چپ المان را وارد کنید"));
     let right_pos = Number(prompt("شماره نقطه سمت راست المان را وارد کنید"));
-    let value = 0;
-    if (selectedItem != 'wire')
+    let value;
+    if (selectedItem === 'wire')
     {
-        let value = Number(prompt("مقدار المان را وارد کنید"));
+        value = 0;
+    }
+    else
+    {
+        value = Number(prompt("مقدار المان را وارد کنید"));
     }
     $.ajaxSetup({
         async: false
