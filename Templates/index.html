@@ -18,12 +18,16 @@
 				Your browser does not support the HTML5 canvas tag.</canvas>
 
             <div id="node-nums">
-                <form class="node-form" method="GET" action={{ url_for( 'calculate') }}>
+                <form class="node-form" id="calculate" method="GET" action={{ url_for( 'calculate') }}>
                     <button type="submit" id="calc-btn btn">Calculate</button>
                 </form>
 
                 <form class="node-form" method="GET" action={{ url_for('draw') }}>
                     <button type="submit" id="calc-btn btn2">DrawCircuit</button>
+                </form>
+
+                <form class="node-form" method="GET" action={{ url_for('reset') }}>
+                    <button type="submit" id="calc-btn btn2">Reset</button>
                 </form>
 
             </div>

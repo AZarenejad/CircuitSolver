@@ -23,7 +23,6 @@ function createEl(event) {
     let left_pos = Number(prompt("شماره نقطه سمت چپ المان را وارد کنید"));
     let right_pos = Number(prompt("شماره نقطه سمت راست المان را وارد کنید"));
     let value;
-    console.log(selectedItem + "herekv");
     if (selectedItem === 'wire')
     {
         value = 0;
@@ -57,21 +56,10 @@ function createEl(event) {
         //     else console.error('data: ', data, '\n jQxhr: ', jQxhr);
         // }
     });
-
-    canvas.innerHTML +=
-        (`<div class="canvas-element"
-	style="left:${40}px;top:${25}px;">
-	<p>${10}</p>
-	<div class="inner-el">
-	<p>${1}</p>
-	<img class="canvas-img" src="${'./static/img/' + selectedItem + '.png'}">
-	<p>${2}</p>
-	</div>
-    </div>`);
-    console.log(canvasElements);
 }
 
-$("#node-form").submit(() => {
+$("#calculate").submit(() => {
+    console.log("hereklvhfdn vfi vnf");
     $.ajaxSetup({
         async: false
     });
