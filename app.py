@@ -20,21 +20,40 @@ def page():
 def calculate():
     global mycircuit
     results = mycircuit[0].solve_circuit()
+    answer = {}
+    print(">>>>>>>>>> ", type(results))
     for res in results:
         print(res, " = " , results[res])
+<<<<<<< HEAD
     
+=======
+        answer[res] = results[res]
+
+#    return jsonify(answer)
+    return results
+    # return redirect(url_for('calculate'))
+>>>>>>> 235fe1b41831c1476dc9574349447edd2649015d
 
 @app.route('/draw', methods = ['GET'])
 def draw():
     global mycircuit
     mycircuit[0].drawCircuit()
+<<<<<<< HEAD
     return redirect(request.referrer)
+=======
+#    redirect(url_for('/'))
+#    redirect('/')
+    # return redirect(url_for('draw'))
+>>>>>>> 235fe1b41831c1476dc9574349447edd2649015d
 
 @app.route('/state/<string:statement>', methods = ['POST'])
 def handle_statement(statement):
     global mycircuit
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.")
     inp = statement.split(' ')
+    val = int(inp[3])
     if inp[0] == "IV":
+<<<<<<< HEAD
         mycircuit[0].add_element(kind = "Voltage Independent Source", left_pos = inp[1] , right_pos = inp[2], value = int(inp[3]))
     elif inp[0] == "DV":
         mycircuit[0].add_element(kind = "Voltage Dependent Source", left_pos = inp[1] , right_pos = inp[2], value = int(inp[3]))
@@ -48,6 +67,21 @@ def handle_statement(statement):
         mycircuit[0].add_element(kind = "Resistor", left_pos = inp[1] , right_pos = inp[2], value = int(inp[3]))
     elif inp[0] == "L":
         mycircuit[0].add_element(kind = "Inductor", left_pos = inp[1] , right_pos = inp[2], value = int(inp[3]))
+=======
+        mycircuit[0].add_element(kind = "Voltage Independent Source", left_pos = inp[1] , right_pos = inp[2], value = val)
+    elif inp[0] == "DV":
+        mycircuit[0].add_element(kind = "Voltage Dependent Source", left_pos = inp[1] , right_pos = inp[2], value = val)
+    elif inp[0] == "IC":
+        mycircuit[0].add_element(kind = "Current Independent Source", left_pos = inp[1] , right_pos = inp[2], value = val)
+    elif inp[0] == "DC":
+        mycircuit[0].add_element(kind = "Current Dependent Source", left_pos = inp[1] , right_pos = inp[2], value = val)
+    elif inp[0] == "C":
+        mycircuit[0].add_element(kind = "Capacitor", left_pos = inp[1] , right_pos = inp[2], value = val)
+    elif inp[0] == "R":
+        mycircuit[0].add_element(kind = "Resistor", left_pos = inp[1] , right_pos = inp[2], value = val)
+    elif inp[0] == "L":
+        mycircuit[0].add_element(kind = "Inductor", left_pos = inp[1] , right_pos = inp[2], value = val)
+>>>>>>> 235fe1b41831c1476dc9574349447edd2649015d
     elif inp[0] == "W":
         mycircuit[0].add_element(kind = "Wire", left_pos = inp[1] , right_pos = inp[2])
 
@@ -64,4 +98,8 @@ def reset():
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(port=5020, debug=flask_debug)
+=======
+    app.run(port=9956, debug=flask_debug)
+>>>>>>> 235fe1b41831c1476dc9574349447edd2649015d

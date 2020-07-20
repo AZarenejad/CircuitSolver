@@ -58,8 +58,13 @@ function createEl(event) {
     });
 }
 
+<<<<<<< HEAD
 $("#calculate").submit(() => {
     console.log("hereklvhfdn vfi vnf");
+=======
+$("#node-form").submit(() => {
+    console.log("herererererer")
+>>>>>>> 235fe1b41831c1476dc9574349447edd2649015d
     $.ajaxSetup({
         async: false
     });
@@ -67,16 +72,16 @@ $("#calculate").submit(() => {
     $.ajax({
         type: 'POST',
         url: '/state/calculate',
-        // success: (data) => {
-        //     const prevHTML = $("#node-nums").html();
-        //     $("#node-nums").html('<div id="ans">' + data + '</div>' +
-        //         '<button id="reset-btn">Reset</button>');
-        //     console.log('data : ', data);
-        //     prevs.push(prevHTML);
-        //     // setTimeout(()=>{
-        //     // 	$("#ans").html(prevHTML);
-        //     // },5000);
-        // }
+        success: (data) => {
+            const prevHTML = $("#node-nums").html();
+            $("#node-nums").html('<div id="ans">' + data + '</div>' +
+                '<button id="reset-btn">Reset</button>');
+            console.log('data : ', data);
+            prevs.push(prevHTML);
+            // setTimeout(()=>{
+            // 	$("#ans").html(prevHTML);
+            // },5000);
+        }
     });
     // $("#reset-btn").on('click', () => {
     //     $("#ans").html(prevs[0]);
