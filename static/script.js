@@ -72,6 +72,7 @@ function createEl(event) {
 }
 
 $("#node-form").submit(() => {
+    console.log("herererererer")
     $.ajaxSetup({
         async: false
     });
@@ -79,16 +80,16 @@ $("#node-form").submit(() => {
     $.ajax({
         type: 'POST',
         url: '/state/calculate',
-        // success: (data) => {
-        //     const prevHTML = $("#node-nums").html();
-        //     $("#node-nums").html('<div id="ans">' + data + '</div>' +
-        //         '<button id="reset-btn">Reset</button>');
-        //     console.log('data : ', data);
-        //     prevs.push(prevHTML);
-        //     // setTimeout(()=>{
-        //     // 	$("#ans").html(prevHTML);
-        //     // },5000);
-        // }
+        success: (data) => {
+            const prevHTML = $("#node-nums").html();
+            $("#node-nums").html('<div id="ans">' + data + '</div>' +
+                '<button id="reset-btn">Reset</button>');
+            console.log('data : ', data);
+            prevs.push(prevHTML);
+            // setTimeout(()=>{
+            // 	$("#ans").html(prevHTML);
+            // },5000);
+        }
     });
     // $("#reset-btn").on('click', () => {
     //     $("#ans").html(prevs[0]);
