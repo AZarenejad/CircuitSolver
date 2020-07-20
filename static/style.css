@@ -44,14 +44,18 @@
 #node-nums {
     width: 1050px;
     height: 100px;
-    border: solid 1px black
+    border: solid 1px black;
+    display: flex;
+    justify-content: center;
 }
 
-#node-form {
+.node-form {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
     align-items: center;
+    padding: 5px;
+
 }
 
 .text-field {

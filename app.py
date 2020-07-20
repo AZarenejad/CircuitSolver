@@ -19,19 +19,19 @@ def page():
     return render_template('index.html')
 
 
-@app.route('/calculate', methods = ['POST'])
+@app.route('/', methods = ['GET'])
 def calculate():
     global mycircuit
     results = mycircuit[0].solve_circuit()
     for res in results:
         print(res, " = " , results[res])
-    return 'Success'
+    return redirect(url_for('calculate'))
 
-@app.route('/draw', methods = ['POST'])
+@app.route('/', methods = ['GET'])
 def draw():
     global mycircuit
     mycircuit[0].drawCircuit()
-    document.location.href = '/'
+    return redirect(url_for('draw'))
 
 @app.route('/state/<string:statement>', methods = ['POST'])
 def handle_statement(statement):
@@ -58,7 +58,7 @@ def handle_statement(statement):
 
 
 
-@app.route('/reset', methods = ['POST'])
+@app.route('/reset', methods = ['GET'])
 def reset():
     pass
     # global global_circuit

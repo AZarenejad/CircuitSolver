@@ -22,8 +22,6 @@ function createEl(event) {
     let left_pos = Number(prompt("شماره نقطه سمت چپ المان را وارد کنید"));
     let right_pos = Number(prompt("شماره نقطه سمت راست المان را وارد کنید"));
     let value = 0;
-    console.log("selectedItem: ");
-    console.log(selectedItem);
     if (selectedItem != 'wire')
     {
         let value = Number(prompt("مقدار المان را وارد کنید"));
