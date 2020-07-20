@@ -37,41 +37,21 @@
     <script>
         var c = document.getElementById("canvas");
         var ctx = c.getContext("2d");
-        ctx.beginPath();
-        ctx.arc(40, 25, 2, 0, Math.PI * 2, true);
-        ctx.fill();
+        ctx.font = "30px Comic Sans MS";
+        ctx.lineWidth = 1;
+        ctx.strokeText("1", 40, 25);
+        ctx.strokeText("4", 140, 25);
+        ctx.strokeText("6", 240, 25);
+    
 
-        ctx.beginPath();
-        ctx.arc(140, 25, 2, 0, Math.PI * 2, true);
-        ctx.fill();
+        ctx.strokeText("2", 40, 75);
+        ctx.strokeText("5", 140, 75);
+        ctx.strokeText("8", 240, 75);
 
-        ctx.beginPath();
-        ctx.arc(240, 25, 2, 0, Math.PI * 2, true);
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.arc(40, 75, 2, 0, Math.PI * 2, true);
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.arc(140, 75, 2, 0, Math.PI * 2, true);
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.arc(240, 75, 2, 0, Math.PI * 2, true);
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.arc(40, 125, 2, 0, Math.PI * 2, true);
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.arc(140, 125, 2, 0, Math.PI * 2, true);
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.arc(240, 125, 2, 0, Math.PI * 2, true);
-        ctx.fill();
+        
+        ctx.strokeText("3", 40, 125);
+        ctx.strokeText("6", 140, 125);
+        ctx.strokeText("9", 240, 125);
     </script>
 
 </body>
