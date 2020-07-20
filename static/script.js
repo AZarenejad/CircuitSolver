@@ -9,7 +9,8 @@ function renderSidebar() {
     let sidebar = document.getElementById("sidebar");
     for (i in elements) {
         sidebar.innerHTML += (`<img src="${"./static/img/" + elements[i] + ".png"}"
-								onclick="console.log(selectedItem = '${elements[i]}')"
+                                onclick="console.log(selectedItem = '${elements[i]};');
+                                createEl(event)"
 								class="sidebar-element"
 								id="${elements[i]}"
                                 />\n`);

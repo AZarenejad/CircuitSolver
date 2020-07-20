@@ -1,13 +1,14 @@
 #container {
     position: absolute;
     width: 1212px;
-    height: 1054px;
+    height: 1300px;
     border: solid 1px;
     border-color: black;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: center;
+    justify-content: center;
 }
 
 #canvas {
@@ -22,7 +23,7 @@
 #sidebar {
     position: relative;
     width: 155px;
-    height: 1050px;
+    height: 1300px;
     float: right;
     background-color: white;
     border: solid 1px;
