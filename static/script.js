@@ -1,10 +1,11 @@
 let selectedItem = 'Battery';
 const elements = ['battery', 'current', 'dependent_voltage', 'dependent_current',
-    'capacitor', 'resistor', 'inductor'
+    'capacitor', 'resistor', 'inductor', 'wire'
 ];
 
 
 function renderSidebar() {
+    console.log("renderSidebar ");
     let sidebar = document.getElementById("sidebar");
     for (i in elements) {
         sidebar.innerHTML += (`<img src="${"./static/img/" + elements[i] + ".png"}"
@@ -20,7 +21,13 @@ function createEl(event) {
     let canvas = document.getElementById("canvas");
     let left_pos = Number(prompt("شماره نقطه سمت چپ المان را وارد کنید"));
     let right_pos = Number(prompt("شماره نقطه سمت راست المان را وارد کنید"));
-    let value = Number(prompt("مقدار المان را وارد کنید"));
+    let value = 0;
+    console.log("selectedItem: ");
+    console.log(selectedItem);
+    if (selectedItem != 'wire')
+    {
+        let value = Number(prompt("مقدار المان را وارد کنید"));
+    }
     $.ajaxSetup({
         async: false
     });
@@ -32,6 +39,7 @@ function createEl(event) {
         'capacitor': 'C',
         'resistor': 'R',
         'inductor': 'L',
+        'wire': 'W'
     };
     const statement = `${map[selectedItem]} ${left_pos} ${right_pos} ${value}`;
     console.log('statement: ', statement)
@@ -49,7 +57,7 @@ function createEl(event) {
     canvas.innerHTML +=
         (`<div class="canvas-element"
 	style="left:${40}px;top:${25}px;">
-	<p>${10}</p>  
+	<p>${10}</p>
 	<div class="inner-el">
 	<p>${1}</p>
 	<img class="canvas-img" src="${'./static/img/' + selectedItem + '.png'}">

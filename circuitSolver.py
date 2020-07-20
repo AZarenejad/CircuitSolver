@@ -44,8 +44,8 @@ class circuit():
         self.particular = None
         self.name = {}
         self.symbol = {}
-        # if verbose:
-        #     print('Starting a new circuit')
+        if verbose:
+            print('Starting a new circuit')
         self.elements = []
         self.results = []
 
@@ -67,11 +67,11 @@ class circuit():
 
         if value != None:
             self.subsDic[sy] = value
-        # if verbose:
-        #     if value:
-        #         print('Resistor',name,'added between nodes',node1,'and',node2,'with value',value)
-        #     else:
-        #         print('Resistor',name,'added between nodes',node1,'and',node2)
+        if verbose:
+            if value:
+                print('Resistor',name,'added between nodes',node1,'and',node2,'with value',value)
+            else:
+                print('Resistor',name,'added between nodes',node1,'and',node2)
         return sy
 
     def addC(self,name,node1,node2,value=None):
@@ -1092,6 +1092,8 @@ class circuit():
         self.results = mycircuit.solve()
         return self.results
 
+
+verbose = True
 
 # example of how to use:
 # if __name__ == '__main__':
