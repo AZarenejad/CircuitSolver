@@ -9,7 +9,7 @@ function renderSidebar() {
     let sidebar = document.getElementById("sidebar");
     for (i in elements) {
         sidebar.innerHTML += (`<img src="${"./static/img/" + elements[i] + ".png"}"
-                                onclick="console.log(selectedItem = '${elements[i]};');
+                                onclick="console.log(selectedItem = '${elements[i]}');
                                 createEl(event)"
 								class="sidebar-element"
 								id="${elements[i]}"
@@ -23,6 +23,7 @@ function createEl(event) {
     let left_pos = Number(prompt("شماره نقطه سمت چپ المان را وارد کنید"));
     let right_pos = Number(prompt("شماره نقطه سمت راست المان را وارد کنید"));
     let value;
+    console.log(selectedItem + "herekv");
     if (selectedItem === 'wire')
     {
         value = 0;

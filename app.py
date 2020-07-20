@@ -14,8 +14,9 @@ mycircuit = [circuit()]
 @app.route('/', methods = ['GET'])
 def page():
     global mycircuit
-    del mycircuit[0]
-    mycircuit.append(circuit())
+    # del mycircuit[0]
+    # mycircuit.append(circuit())
+
     return render_template('index.html')
 
 
@@ -25,13 +26,14 @@ def calculate():
     results = mycircuit[0].solve_circuit()
     for res in results:
         print(res, " = " , results[res])
-    return redirect(url_for('calculate'))
+    # return redirect(url_for('calculate'))
 
-@app.route('/', methods = ['GET'])
+@app.route('/draw', methods = ['GET'])
 def draw():
     global mycircuit
     mycircuit[0].drawCircuit()
-    return redirect(url_for('draw'))
+    redirect('/')
+    # return redirect(url_for('draw'))
 
 @app.route('/state/<string:statement>', methods = ['POST'])
 def handle_statement(statement):
@@ -68,4 +70,4 @@ def reset():
 
 
 if __name__ == '__main__':
-    app.run(port=3810, debug=flask_debug)
+    app.run(port=9980, debug=flask_debug)
