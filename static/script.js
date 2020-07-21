@@ -23,14 +23,30 @@ function createEl(event) {
     let left_pos = Number(prompt("شماره نقطه سمت چپ المان را وارد کنید"));
     let right_pos = Number(prompt("شماره نقطه سمت راست المان را وارد کنید"));
     let value;
+    let dleft, dright, dtype, a, b;
     if (selectedItem === 'wire')
     {
+        value = 0;
+    }
+    else if (selectedItem === 'dependent_voltage' || selectedItem === 'dependent_current')
+    {
+        dleft = Number(prompt("شماره نقطه سمت چپ المان به آن وابسته شده را وارد کنید"));
+        dright = Number(prompt("شماره نقطه سمت راست المان به آن وابسته شده را وارد کنید"));
+        dtype = Number(prompt("تایپ المان به آن وابسته شده را به اینصورت وارد کنید: اگر المان مربوطه از نوع ولتاژ است ، عدد صفر و در غیراینصورت عدد ۱."));
+        a = Number(prompt("relation: aX + b. Please enter value of 'a'."));
+        b = Number(prompt("relation: aX + b. Please enter value of 'b'."));
         value = 0;
     }
     else
     {
         value = Number(prompt("مقدار المان را وارد کنید"));
+        dleft = 0;
+        dright = 0;
+        dtype = 0;
+        a = 0;
+        b = 0;
     }
+
     $.ajaxSetup({
         async: false
     });
@@ -44,7 +60,7 @@ function createEl(event) {
         'inductor': 'L',
         'wire': 'W'
     };
-    const statement = `${map[selectedItem]} ${left_pos} ${right_pos} ${value}`;
+    const statement = `${map[selectedItem]} ${left_pos} ${right_pos} ${value} ${dleft} ${dright} ${dtype} ${a} ${b}`;
     console.log('statement: ', statement)
     $.ajax({
         type: 'POST',

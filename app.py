@@ -43,11 +43,19 @@ def handle_statement(statement):
     if inp[0] == "IV":
         mycircuit[0].add_element(kind = "Voltage Independent Source", left_pos = inp[1] , right_pos = inp[2], value = int(inp[3]))
     elif inp[0] == "DV":
-        mycircuit[0].add_element(kind = "Voltage Dependent Source", left_pos = inp[1] , right_pos = inp[2], value = int(inp[3]))
+        type_ = 'V'
+        if int(inp[6]) == 1:
+            type_ = 'I'
+        mycircuit[0].add_element(kind = "Voltage Dependent Source", left_pos = inp[1] , right_pos = inp[2],
+                value = int(inp[3]), dleft_pos = inp[4], dright_pos = inp[5], dtype = type_, a = int(inp[7]), b = int(inp[8]))
     elif inp[0] == "IC":
         mycircuit[0].add_element(kind = "Current Independent Source", left_pos = inp[1] , right_pos = inp[2], value = int(inp[3]))
     elif inp[0] == "DC":
-        mycircuit[0].add_element(kind = "Current Dependent Source", left_pos = inp[1] , right_pos = inp[2], value = int(inp[3]))
+        type_ = 'V'
+        if int(inp[6]) == 1:
+            type_ = 'I'
+        mycircuit[0].add_element(kind = "Current Dependent Source", left_pos = inp[1] , right_pos = inp[2],
+                value = int(inp[3]), dleft_pos = inp[4], dright_pos = inp[5], dtype = type_, a = int(inp[7]), b = int(inp[8]))
     elif inp[0] == "C":
         mycircuit[0].add_element(kind = "Capacitor", left_pos = inp[1] , right_pos = inp[2], value = int(inp[3]))
     elif inp[0] == "R":
@@ -69,4 +77,4 @@ def reset():
 
 
 if __name__ == '__main__':
-    app.run(port=9846, debug=flask_debug)
+    app.run(port=8826, debug=flask_debug)
