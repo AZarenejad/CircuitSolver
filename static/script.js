@@ -58,13 +58,9 @@ function createEl(event) {
     });
 }
 
-<<<<<<< HEAD
-$("#calculate").submit(() => {
-    console.log("hereklvhfdn vfi vnf");
-=======
+// $("#calculate").submit(() => {
 $("#node-form").submit(() => {
-    console.log("herererererer")
->>>>>>> 235fe1b41831c1476dc9574349447edd2649015d
+    console.log("hereklvhfdn vfi vnf");
     $.ajaxSetup({
         async: false
     });

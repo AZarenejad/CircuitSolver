@@ -13,6 +13,9 @@ __maintainers__ = ["Alireza Zarenejad", "Moein Shafi"]
 __emails__ = ["a.zarenejad@gmail.com", "mosafer.moein@gmail.com"]
 __status__ = "Production"
 
+logging = True
+s = sympy.Symbol('s')
+
 class element:
     def __init__(self, kind, position, value = 0, dposition = "", dtype = "", a = 0, b = 0):
         self.kind = kind
@@ -36,6 +39,7 @@ class circuitEx(Exception):
 
 class circuit():
     def __init__(self):
+        self.logs = ''
         self.components = []
         self.subsDic = {}
         self.meas = {}
@@ -44,7 +48,8 @@ class circuit():
         self.particular = None
         self.name = {}
         self.symbol = {}
-        if verbose:
+        if logging:
+            self.logs += 'Starting a new circuit\n'
             print('Starting a new circuit')
         self.elements = []
         self.results = []
@@ -67,11 +72,15 @@ class circuit():
 
         if value != None:
             self.subsDic[sy] = value
-        if verbose:
+        if logging:
             if value:
-                print('Resistor',name,'added between nodes',node1,'and',node2,'with value',value)
+                temp = 'Resistor ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + ' with value ' + str(value) + '\n'
+                print(temp)
             else:
-                print('Resistor',name,'added between nodes',node1,'and',node2)
+                temp = 'Resistor ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + '\n'
+                self.logs += temp
+                print(temp)
+
         return sy
 
     def addC(self,name,node1,node2,value=None):
@@ -91,11 +100,15 @@ class circuit():
 
         if value != None:
             self.subsDic[sy] = value
-        if verbose:
+        if logging:
             if value:
-                print('Capcitor',name,'added between nodes',node1,'and',node2,'with value',value)
+                temp = 'Capcitor ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + ' with value ' + str(value) + '\n'
+                self.logs += temp
+                print(temp)
             else:
-                print('Capacitor',name,'added between nodes',node1,'and',node2)
+                temp = 'Capcitor ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + '\n'
+                self.logs += temp
+                print(temp)
         return sy
 
     def addL(self,name,node1,node2,value=None):
@@ -115,11 +128,15 @@ class circuit():
 
         if value != None:
             self.subsDic[sy] = value
-        if verbose:
+        if logging:
             if value:
-                print('Inductor',name,'added between nodes',node1,'and',node2,'with value',value)
+                temp = 'Inductor ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + ' with value ' + str(value) + '\n'
+                self.logs += temp
+                print(temp)
             else:
-                print('Inductor',name,'added between nodes',node1,'and',node2)
+                temp = 'Inductor ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + '\n'
+                self.logs += temp
+                print(temp)
         return sy
 
     def addV(self,name,node1,node2,value=None):
@@ -145,11 +162,15 @@ class circuit():
 
         if value != None:
             self.subsDic[sy] = value
-        if verbose:
+        if logging:
             if value:
-                print('Voltage supply',name,'added between nodes',node1,'and',node2,'with value',value)
+                temp = 'Voltage supply ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + ' with value ' + str (value) + '\n'
+                self.logs += temp
+                print(temp)
             else:
-                print('Voltage supply',name,'added between nodes',node1,'and',node2)
+                temp = 'Voltage supply ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + '\n'
+                self.logs += temp
+                print(temp)
         return sy
 
     def addI(self,name,node1,node2,value=None):
@@ -169,11 +190,15 @@ class circuit():
 
         if value != None:
             self.subsDic[sy] = value
-        if verbose:
+        if logging:
             if value:
-                print('Current supply',name,'added between nodes',node1,'and',node2,'with value',value)
+                temp = 'Current supply ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + ' with value ' + str(value) + '\n'
+                self.logs += temp
+                print(temp)
             else:
-                print('Current supply',name,'added between nodes',node1,'and',node2)
+                temp = 'Current supply ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + '\n'
+                self.logs += temp
+                print(temp)
         return sy
 
     def addVM(self,name,node1,node2):
@@ -193,8 +218,10 @@ class circuit():
         self.components.append(dict)
 
         self.meas[name] = dict
-        if verbose:
-            print('Voltage measurement',name,'added between nodes',node1,'and',node2)
+        if logging:
+            temp = 'Voltage measurement ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + '\n'
+            self.logs += temp
+            print(temp)
         return sy
 
     def addIM(self,name,node1,node2):
@@ -214,8 +241,10 @@ class circuit():
         self.components.append(dict)
 
         self.meas[name] = dict
-        if verbose:
-            print('Current measurement',name,'added between nodes',node1,'and',node2)
+        if logging:
+            temp = 'Current measurement ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + '\n'
+            self.logs += temp
+            print(temp)
         return sy
 
     def addCVS(self,name,node1,node2,cont,value=None):
@@ -247,11 +276,15 @@ class circuit():
 
         if value != None:
             self.subsDic[sy] = value
-        if verbose:
+        if logging:
             if value:
-                print('VcVs',name,'added between nodes',node1,'and',node2,'with value',value)
+                temp = 'VcVs ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + ' with value ' + str(value) + '\n'
+                self.logs += temp
+                print(temp)
             else:
-                print('VcVs',name,'added between nodes',node1,'and',node2)
+                temp = 'VcVs ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + '\n'
+                self.logs += temp
+                print(temp)
         return sy
 
     def addCIS(self,name,node1,node2,cont,value=None):
@@ -277,11 +310,15 @@ class circuit():
 
         if value != None:
             self.subsDic[sy] = value
-        if verbose:
+        if logging:
             if value:
-                print('Current supply',name,'added between nodes',node1,'and',node2,'with value',value)
+                temp = 'Current supply ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + ' with value ' + str(value) + '\n'
+                self.logs += temp
+                print(temp)
             else:
-                print('Current supply',name,'added between nodes',node1,'and',node2)
+                temp = 'Current supply ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + '\n'
+                self.logs += temp
+                print(temp)
         return sy
 
 
@@ -296,18 +333,26 @@ class circuit():
             self.nodeList.add(component['n2'])
 
         self.nodeList = list(self.nodeList)
-        if verbose:
-            print('There are',len(self.nodeList),'nodes :')
+        if logging:
+            temp = 'There are ' + str(len(self.nodeList)) + ' nodes : \n'
             for node in self.nodeList:
-                print('    ',node)
+                temp += '    '
+                temp += str(node)
+                temp += '\n'
+            self.logs += temp
+            print(temp)
+
 
     def _nodeVariables(self):
         self.nodeVars = {}
 
         if len(self.nodeList) == 0:
             raise circuitEx('No nodes in the circuit')
-        if verbose:
-            print('Creating node variables')
+        if logging:
+            temp = 'Creating node variables...\n'
+            self.logs += temp
+            print(temp)
+
         zeroFound = False
         for node in self.nodeList:
             if node == 0:
@@ -321,8 +366,13 @@ class circuit():
                 self.name[ns] = name
 
                 self.symbol[name] = ns
-                if verbose:
-                    print('    ',name)
+                if logging:
+                    temp = '    '
+                    temp += name
+                    temp += '\n'
+                    self.logs += temp
+                    print(temp)
+
         if not zeroFound:
             raise circuitEx('No 0 node in circuit')
 
@@ -399,8 +449,11 @@ class circuit():
         return eq
 
     def _addKCLequations(self):
-        if verbose:
-            print('Creating KCL equations')
+        if logging:
+            temp = 'Creating KCL equations...\n'
+            self.logs += temp
+            print(temp)
+
         for node in self.nodeList:
             if node != 0:
                 equation = sympy.Rational(0,1)
@@ -418,8 +471,13 @@ class circuit():
                     elif cm['k'] == 'im':
                         equation = self._addIMtoNode(cm,equation,node)
                 self.equations.append(equation)
-                if verbose:
-                    print('    ',equation)
+                if logging:
+                    temp = '    '
+                    temp += str(equation)
+                    temp += '\n'
+                    self.logs += temp
+                    print(temp)
+
 
     def _substEqs(self,oldS,newS):
         newList = []
@@ -428,8 +486,11 @@ class circuit():
         self.equations = newList
 
     def _addVequations(self):
-        if verbose:
-            print('Adding V source equations')
+        if logging:
+            temp = 'Adding V source equations...\n'
+            self.logs += temp
+            print(temp)
+
         for cm in self.components:
             if cm['k']=='vs' or cm['k']=='cvs':
 
@@ -444,8 +505,11 @@ class circuit():
                     self.equations.append(sympy.Eq(cm['sy'],self.nodeVars[n1]-self.nodeVars[n2]))
 
     def _processVM(self):
-        if verbose:
-            print('Adding V measurement equations')
+        if logging:
+            temp = 'Adding V measurement equations...\n'
+            self.logs += temp
+            print(temp)
+
         for cm in self.components:
             if cm['k']=='vm':
 
@@ -468,8 +532,11 @@ class circuit():
                     self.equations.append(sympy.Eq(cm['sy'],self.nodeVars[n1]-self.nodeVars[n2]))
 
     def _processIM(self):
-        if verbose:
-            print('Adding I measurement equations')
+        if logging:
+            temp = 'Adding I measurement equations...\n'
+            self.logs += temp
+            print(temp)
+
         for cm in self.components:
             if cm['k']=='im':
                 self.unknowns.add(cm['sy'])
@@ -489,20 +556,35 @@ class circuit():
                     self.nodeVars[n1] = self.nodeVars[n2]
 
     def _processCtr(self):
-        if verbose:
-            print('Processing controlled elements')
+        if logging:
+            temp = 'Processing controlled elements...\n'
+            self.logs += temp
+            print(temp)
+
         for cm in self.components:
             if cm['k'] == 'cvs' or cm['k'] == 'cis':
                 self._substEqs(cm['sy'],cm['sy']*cm['ctr']['sy'])
 
     def _showEquations(self):
-        print('Circuit equations:')
+        temp = 'Circuit equations:\n'
         for eq in self.equations:
-            print('    ',eq)
+            temp += '    '
+            temp += str(eq)
+            temp += '\n'
+        self.logs += temp
+        print(temp)
+
 
     def _solveEquations(self):
-        if verbose:
-            print('Unknowns:',self.unknowns)
+        if logging:
+            temp = 'Unknowns: '
+            for u in self.unknowns:
+                temp += '    '
+                temp += str(u)
+                temp += '\n'
+            self.logs += temp
+            print(temp)
+
         self.sSolution = sympy.solve(self.equations,list(self.unknowns))
 
     def _nameSolution(self):
@@ -510,21 +592,37 @@ class circuit():
         for sym in self.sSolution:
             key = self.name[sym]
             self.solution[key] = self.sSolution[sym]
-        if verbose:
-            print('Circuit solution:')
-            print('    ',self.solution)
+        if logging:
+            temp = 'Circuit solution:\n'
+            temp += '    '
+            temp += str(key)
+            temp += ' = '
+            temp += str(self.solution[key])
+            temp += '\n'
+            self.logs += temp
+            print(temp)
+
 
     def _substituteSolution(self):
         self.particular = {}
         for key in self.solution:
             self.particular[key] = self.solution[key].subs(self.subsDic)
-        if verbose:
-            print('Circuit solution with substitutions:')
-            print('    ',self.particular)
+        if logging:
+            temp = 'Circuit solution with substitutions:\n'
+            temp += '    '
+            temp += str(key)
+            temp += ' = '
+            temp += str(self.particular[key])
+            temp += '\n'
+            self.logs += temp
+            print(temp)
+
 
     def solve(self):
-        if verbose:
-            print('Solving the circuit')
+        if logging:
+            temp = 'Solving the circuit...\n'
+            self.logs += temp
+            print(temp)
 
         self.equations  = []
         self.unknowns = set([])
@@ -535,7 +633,7 @@ class circuit():
         self._processIM()
         self._processVM()
         self._processCtr()
-        if verbose:
+        if logging:
             self._showEquations()
         self._solveEquations()
         self._nameSolution()
@@ -1041,6 +1139,7 @@ class circuit():
             elem = element(kind, position, value)
         else:
             elem = element(kind, position)
+
         self.elements.append(elem)
 
     def solve_circuit(self):
@@ -1089,24 +1188,8 @@ class circuit():
                 mycircuit.addL('L'+ elem.position, int(elem.position[0]), int(elem.position[1]), elem.value)
 
         self.results = mycircuit.solve()
+        print(">>>>>>>>>>>>> LOGS <<<<<<<<<<<<<")
+        print(len(self.logs))
+        print(self.logs)
         return self.results
 
-
-verbose = True
-
-# example of how to use:
-# if __name__ == '__main__':
-
-    # verbose = False
-
-    # mycircuit = circuit()
-    # mycircuit.add_element(kind = "Voltage Independent Source", left_pos = "1", right_pos = "2", value = 10)
-    # mycircuit.add_element(kind = "Resistor", left_pos = "1", right_pos = "4", value = 5)
-    # mycircuit.add_element(kind = "Wire", left_pos = "2", right_pos = "5")
-    # mycircuit.add_element(kind = "Wire", left_pos = "4", right_pos = "5")
-    # mycircuit.add_element(kind = "Wire", left_pos = "5", right_pos = "6")
-
-    # results = mycircuit.solve_circuit()
-
-    # for res in results:
-    #     print(res, " = " , results[res])
