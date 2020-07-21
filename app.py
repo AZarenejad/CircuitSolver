@@ -15,7 +15,6 @@ def page():
     global mycircuit
     return render_template('index.html')
 
-
 @app.route('/calculate', methods = ['GET'])
 def calculate():
     global mycircuit
@@ -25,8 +24,8 @@ def calculate():
     for res in results:
         print(res, " = " , results[res])
         answer[res] = results[res]
-
-    return redirect(request.referrer)
+    return render_template('result.html', results = results)
+#    return redirect(request.referrer)
 
 
 @app.route('/draw', methods = ['GET'])
@@ -77,4 +76,4 @@ def reset():
 
 
 if __name__ == '__main__':
-    app.run(port=8826, debug=flask_debug)
+    app.run(port=8815, debug=flask_debug)
