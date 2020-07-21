@@ -75,6 +75,7 @@ class circuit():
         if logging:
             if value:
                 temp = 'Resistor ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + ' with value ' + str(value) + '\n'
+                self.logs += temp
                 print(temp)
             else:
                 temp = 'Resistor ' + str(name) + ' added between nodes ' + str(node1) + ' and ' + str(node2) + '\n'
@@ -587,6 +588,7 @@ class circuit():
 
         self.sSolution = sympy.solve(self.equations,list(self.unknowns))
 
+
     def _nameSolution(self):
         self.solution = {}
         for sym in self.sSolution:
@@ -638,7 +640,7 @@ class circuit():
         self._solveEquations()
         self._nameSolution()
         self._substituteSolution()
-        return self.particular
+        return self.logs , self.particular
 
     def subs(self):
         return self.particular
@@ -1187,9 +1189,7 @@ class circuit():
             elif elem.kind == "Inductor":
                 mycircuit.addL('L'+ elem.position, int(elem.position[0]), int(elem.position[1]), elem.value)
 
-        self.results = mycircuit.solve()
-        print(">>>>>>>>>>>>> LOGS <<<<<<<<<<<<<")
-        print(len(self.logs))
-        print(self.logs)
-        return self.results
+        logs , self.results = mycircuit.solve()
+
+        return logs, self.results
 

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, jsonify ,  render_template, request , redirect
+from flask import Flask, render_template, url_for, request, jsonify ,  render_template, request , redirect, Markup
 from circuitSolver import *
 import logging
 
@@ -18,14 +18,16 @@ def page():
 @app.route('/calculate', methods = ['GET'])
 def calculate():
     global mycircuit
-    results = mycircuit[0].solve_circuit()
-    answer = {}
-    print("in calc")
+    logs, results = mycircuit[0].solve_circuit()
     for res in results:
-        print(res, " = " , results[res])
-        answer[res] = results[res]
-    return render_template('result.html', results = results)
-#    return redirect(request.referrer)
+        temp = "\n" + str(res) + " = " + str(results[res])
+        logs += temp
+    l = logs.split('\n')
+    message = ""
+    for x in l:
+        message += "<h5>" + x + "</h5>"
+    message = Markup(message)
+    return render_template('result.html', results = message)
 
 
 @app.route('/draw', methods = ['GET'])
@@ -76,4 +78,4 @@ def reset():
 
 
 if __name__ == '__main__':
-    app.run(port=8815, debug=flask_debug)
+    app.run(port=8677, debug=flask_debug)
